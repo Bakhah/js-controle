@@ -30,13 +30,12 @@ display_results = (json) ->
     result_items_view.append('<h3>Aucun résultat</h3><h4>Essayez une autre recherche</h4>')
 
 display_results_description = (json) ->
-  results = json.query.pages
+  results = json.parse
   item_title_view = jQuery(".detailContainer h3")
   item_content_view = jQuery(".detailContainer p")
 
-  $.each results, (value) ->
-    item_title_view.html(results[value].title)
-    item_content_view.html(results[value].revisions["0"]["*"])
+  item_title_view.html(results.title)
+  item_content_view.html(results.text["*"])
 
 empty_results_view = ->
   jQuery(".results").empty()

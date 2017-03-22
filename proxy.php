@@ -8,7 +8,7 @@ if ( isset( $_GET['search'] ) || isset( $_GET['title'] ) )
 	{
 		$url .= "&list=search&srsearch=".urlencode( $_GET['search'] );
 	} else if ( isset( $_GET['title'] ) ) {
-		$url .= "&prop=revisions&rvprop=content&titles=".urlencode( $_GET['title'] );
+		$url .= "&action=parse&page=".urlencode( $_GET['title'] );
 	}
 
 	// chargement et affichage de la réponse brute de l'API wikipedia

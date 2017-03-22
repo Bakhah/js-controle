@@ -41,13 +41,11 @@ display_results = function(json) {
 
 display_results_description = function(json) {
   var item_content_view, item_title_view, results;
-  results = json.query.pages;
+  results = json.parse;
   item_title_view = jQuery(".detailContainer h3");
   item_content_view = jQuery(".detailContainer p");
-  return $.each(results, function(value) {
-    item_title_view.html(results[value].title);
-    return item_content_view.html(results[value].revisions["0"]["*"]);
-  });
+  item_title_view.html(results.title);
+  return item_content_view.html(results.text["*"]);
 };
 
 empty_results_view = function() {
