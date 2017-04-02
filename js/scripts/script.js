@@ -1,18 +1,12 @@
-var clear_warnings, display_results_description, display_search_results, empty_results_view, hide_loading, initialize_globals, item_content_view, item_title_view, items_search_view, listen_submit, main_form, main_title, ready_document, reset_item_listeners, search_field, show_loading, warn_user_search_field_is_empty;
 
-search_field = void 0;
+var search_field = undefined;
+var items_search_view = undefined;
+var item_title_view = undefined;
+var item_content_view = undefined;
+var main_form = undefined;
+var main_title = undefined;
 
-items_search_view = void 0;
-
-item_title_view = void 0;
-
-item_content_view = void 0;
-
-main_form = void 0;
-
-main_title = void 0;
-
-initialize_globals = function() {
+var initialize_globals = function() {
   search_field = jQuery('[name="search"]');
   items_search_view = jQuery(".results");
   item_title_view = jQuery(".detailContainer h3");
@@ -21,7 +15,7 @@ initialize_globals = function() {
   return main_title = jQuery('form h1');
 };
 
-listen_submit = function() {
+var listen_submit = function() {
   return main_form.on('submit', function(e) {
     e.preventDefault();
     clear_warnings();
@@ -40,7 +34,7 @@ listen_submit = function() {
   });
 };
 
-display_search_results = function(json) {
+var display_search_results = function(json) {
   var i, item, json_search_results, len;
   json_search_results = json.query.search;
   if (json_search_results && json_search_results.length !== 0) {
@@ -55,14 +49,14 @@ display_search_results = function(json) {
   }
 };
 
-display_results_description = function(json) {
+var display_results_description = function(json) {
   var item_infos;
   item_infos = json.parse;
   item_title_view.html(item_infos.title);
   return item_content_view.html(item_infos.text["*"]);
 };
 
-reset_item_listeners = function() {
+var reset_item_listeners = function() {
   return jQuery('.result_item').click(function() {
     show_loading();
     return $.getJSON('proxy.php', {
@@ -74,30 +68,30 @@ reset_item_listeners = function() {
   });
 };
 
-empty_results_view = function() {
+var empty_results_view = function() {
   return items_search_view.empty();
 };
 
-show_loading = function() {
+var show_loading = function() {
   hide_loading();
   return main_title.append('<img id="loading" src="assets/animations/spin.svg"></img>');
 };
 
-hide_loading = function() {
+var hide_loading = function() {
   return jQuery('#loading').remove();
 };
 
-warn_user_search_field_is_empty = function() {
+var warn_user_search_field_is_empty = function() {
   search_field.css('border-color', 'red');
   return jQuery('form').append('<div id="warning"><strong>Le champ est vide</strong> Entrez au moins un caractère</div>');
 };
 
-clear_warnings = function() {
+var clear_warnings = function() {
   search_field.css('border-color', '#ccc');
   return jQuery('#warning').remove();
 };
 
-ready_document = function() {
+var ready_document = function() {
   initialize_globals();
   listen_submit();
   return console.log('ready_document events bound');
