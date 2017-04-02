@@ -12,7 +12,7 @@ var initialize_globals = function() {
   item_title_view = jQuery(".detailContainer h3");
   item_content_view = jQuery(".detailContainer p");
   main_form = jQuery('form');
-  return main_title = jQuery('form h1');
+  main_title = jQuery('form h1');
 };
 
 var listen_submit = function() {
@@ -53,7 +53,7 @@ var display_results_description = function(json) {
   var item_infos;
   item_infos = json.parse;
   item_title_view.html(item_infos.title);
-  return item_content_view.html(item_infos.text["*"]);
+  item_content_view.html(item_infos.text["*"]);
 };
 
 var reset_item_listeners = function() {
@@ -94,7 +94,7 @@ var clear_warnings = function() {
 var ready_document = function() {
   initialize_globals();
   listen_submit();
-  return console.log('ready_document events bound');
+  console.log('ready_document events bound');
 };
 
 jQuery(document).ready(ready_document);
